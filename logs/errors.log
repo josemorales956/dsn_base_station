@@ -1,0 +1,12 @@
+[2026-02-20T06:57:30.941459] Decode failed for fcnt=7: CRC mismatch: got 0xD9, want 0x06
+[2026-02-20T06:57:34.949353] Decode failed for fcnt=9: CRC mismatch: got 0x72, want 0xAD
+[2026-02-20T06:57:40.961577] Decode failed for fcnt=12: CRC mismatch: got 0x52, want 0x8D
+[2026-02-20T07:06:03.590891] Decode failed for fcnt=3: CRC mismatch: got 0x34, want 0xEB
+[2026-02-20T07:06:05.593963] Decode failed for fcnt=4: CRC mismatch: got 0x72, want 0xAD
+[2026-02-20T07:06:09.600598] Decode failed for fcnt=6: CRC mismatch: got 0xBB, want 0x64
+[2026-02-20T07:06:11.603647] Decode failed for fcnt=7: CRC mismatch: got 0x13, want 0xCC
+[2026-02-20T07:06:15.610319] Decode failed for fcnt=9: CRC mismatch: got 0xC0, want 0x1F
+[2026-02-20T07:06:17.613745] Decode failed for fcnt=10: CRC mismatch: got 0xAB, want 0x74
+[2026-02-20T07:06:19.616804] Decode failed for fcnt=11: CRC mismatch: got 0x55, want 0x8A
+[2026-02-20T07:06:21.620295] Decode failed for fcnt=12: CRC mismatch: got 0x2E, want 0xF1
+[2026-02-20T07:06:31.636784] Decode failed for fcnt=17: CRC mismatch: got 0x49, want 0x96

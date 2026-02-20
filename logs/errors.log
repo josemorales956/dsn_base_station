@@ -10,3 +10,5 @@
 [2026-02-20T07:06:19.616804] Decode failed for fcnt=11: CRC mismatch: got 0x55, want 0x8A
 [2026-02-20T07:06:21.620295] Decode failed for fcnt=12: CRC mismatch: got 0x2E, want 0xF1
 [2026-02-20T07:06:31.636784] Decode failed for fcnt=17: CRC mismatch: got 0x49, want 0x96
+[2026-02-20T08:42:35.078106] Decode failed for fcnt=2: CRC mismatch: got 0x7B, want 0xA4
+[2026-02-20T08:42:39.085844] Decode failed for fcnt=4: CRC mismatch: got 0x10, want 0xCF

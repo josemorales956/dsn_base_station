@@ -1,6 +1,5 @@
 """
 Sinks decide where the base station sends normalized records.
-For now: stdout JSON (easy for DB teammate to ingest).
 """
 
 import time

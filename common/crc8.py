@@ -2,7 +2,6 @@
 CRC-8 (poly 0x07) utility.
 
 This is used to validate payload integrity.
-Keep this identical across node + base station.
 """
 
 POLY = 0x07  # CRC-8-ATM

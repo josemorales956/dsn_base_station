@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from common.payload import encode_payload
 
 class GatewaySimulator:
-    def __init__(self, node_ids=(1, 2, 3), period_s: float = 2.0, bad_rate: float = 0.2):
+    def __init__(self, node_ids=range(1, 9), period_s: float = 0.25, bad_rate: float = 0.1):
         self.bad_rate = max(0.0, min(1.0, bad_rate))
         self.node_ids = list(node_ids)
         self.period_s = period_s

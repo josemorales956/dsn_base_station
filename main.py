@@ -9,7 +9,7 @@ from base_station.sinks import StdoutJsonSink, JsonlFileSink, ErrorLogSink, Sqli
 
 
 def main():
-    sim = GatewaySimulator(node_ids=(1, 2, 3), period_s=2.0, bad_rate=0.3)
+    sim = GatewaySimulator(node_ids=range(1, 9), period_s=0.25, bad_rate=0.4)
 
     stdout_sink = StdoutJsonSink()
     file_sink = JsonlFileSink("data/uplinks.jsonl")

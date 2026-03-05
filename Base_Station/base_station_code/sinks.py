@@ -59,12 +59,25 @@ class SqliteSink:
       rssi            REAL,
       snr             REAL,
 
-      payload_version INTEGER,
+            payload_version INTEGER,
+      msg_type        TEXT,
+      seq             INTEGER,
+
       node_id         INTEGER,
+      status_flags    INTEGER,
+
+      -- ENV fields
       temp_c          REAL,
       humidity_pct    REAL,
       battery_mv      INTEGER,
-      status_flags    INTEGER,
+
+      -- CAM fields
+      event_code      INTEGER,
+      people          INTEGER,
+      vehicles        INTEGER,
+      bikes           INTEGER,
+      mean_conf       REAL,
+      dwell_s         INTEGER,
 
       record_json     TEXT,
 
@@ -93,21 +106,33 @@ class SqliteSink:
     INSERT_SQL = """
     INSERT INTO uplinks (
       rx_time, dev_eui, fcnt, rssi, snr,
-      payload_version, node_id, temp_c, humidity_pct, battery_mv, status_flags,
+      payload_version, msg_type, seq,
+      node_id, status_flags,
+      temp_c, humidity_pct, battery_mv,
+      event_code, people, vehicles, bikes, mean_conf, dwell_s,
       record_json
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(dev_eui, fcnt) DO UPDATE SET
       rx_time=excluded.rx_time,
       rssi=excluded.rssi,
       snr=excluded.snr,
       payload_version=excluded.payload_version,
+      msg_type=excluded.msg_type,
+      seq=excluded.seq,
       node_id=excluded.node_id,
+      status_flags=excluded.status_flags,
       temp_c=excluded.temp_c,
       humidity_pct=excluded.humidity_pct,
       battery_mv=excluded.battery_mv,
-      status_flags=excluded.status_flags,
+      event_code=excluded.event_code,
+      people=excluded.people,
+      vehicles=excluded.vehicles,
+      bikes=excluded.bikes,
+      mean_conf=excluded.mean_conf,
+      dwell_s=excluded.dwell_s,
       record_json=excluded.record_json
     ;
+    
     """
 
     BAD_INSERT_SQL = """
@@ -138,12 +163,25 @@ class SqliteSink:
             int(record["fcnt"]),
             float(record["rssi"]) if record.get("rssi") is not None else None,
             float(record["snr"]) if record.get("snr") is not None else None,
+
             int(record.get("payload_version")) if record.get("payload_version") is not None else None,
+            record.get("msg_type"),
+            int(record.get("seq")) if record.get("seq") is not None else None,
+
             int(record.get("node_id")) if record.get("node_id") is not None else None,
+            int(record.get("status_flags")) if record.get("status_flags") is not None else None,
+
             float(record.get("temp_c")) if record.get("temp_c") is not None else None,
             float(record.get("humidity_pct")) if record.get("humidity_pct") is not None else None,
             int(record.get("battery_mv")) if record.get("battery_mv") is not None else None,
-            int(record.get("status_flags")) if record.get("status_flags") is not None else None,
+
+            int(record.get("event_code")) if record.get("event_code") is not None else None,
+            int(record.get("people")) if record.get("people") is not None else None,
+            int(record.get("vehicles")) if record.get("vehicles") is not None else None,
+            int(record.get("bikes")) if record.get("bikes") is not None else None,
+            float(record.get("mean_conf")) if record.get("mean_conf") is not None else None,
+            int(record.get("dwell_s")) if record.get("dwell_s") is not None else None,
+
             json.dumps(record),
         )
 

@@ -3,9 +3,9 @@ Entry point: wires together
 GatewaySimulator -> process_uplink -> StdoutJsonSink
 """
 
-from gateway_ingest.simulator import GatewaySimulator
-from base_station_code.ingest_pipeline import process_uplink
-from base_station_code.sinks import StdoutJsonSink, JsonlFileSink, ErrorLogSink, SqliteSink
+from Base_Station.gateway_ingest.simulator import GatewaySimulator
+from Base_Station.base_station_code.ingest_pipeline import process_uplink
+from Base_Station.base_station_code.sinks import StdoutJsonSink, JsonlFileSink, ErrorLogSink, SqliteSink
 
 
 def main():

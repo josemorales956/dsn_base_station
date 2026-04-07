@@ -1,6 +1,11 @@
 import sqlite3
+from pathlib import Path
 
-conn = sqlite3.connect("data/readings.sqlite3")
+DB_PATH = Path(__file__).resolve().parent.parent / "data" / "readings.sqlite3"
+
+print("Using DB:", DB_PATH)
+
+conn = sqlite3.connect(DB_PATH)
 
 print("Tables:")
 print(conn.execute("select name from sqlite_master where type='table'").fetchall())

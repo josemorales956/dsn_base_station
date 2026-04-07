@@ -41,6 +41,27 @@ class ErrorLogSink:
             f.write(f"[{timestamp}] {message}\n")
 
 
+class PerNodeJsonlSink:
+    """
+    Writes each valid uplink to a per-node JSONL file.
+    """
+    def __init__(self, out_dir: str = "data/per_node"):
+        self.out_dir = Path(out_dir)
+        self.out_dir.mkdir(parents=True, exist_ok=True)
+
+    def write(self, record: dict) -> None:
+        node_id = record.get("node_id", "unknown")
+        path = self.out_dir / f"node_{node_id}.jsonl"
+
+        with path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(record) + "\n")
+
+    def write_error(self, error_record: dict) -> None:
+        path = self.out_dir / "errors.jsonl"
+        with path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(error_record) + "\n")
+
+
 class SqliteSink:
     """
     Stores normalized uplink records into SQLite.
